@@ -13,10 +13,10 @@ import * as Query from './global-query';
 })
 export class AppComponent {
     modalRef: BsModalRef;
-    users: Array<any> = []; // List of Users
     user: any = {};
-    lastName: any;
-    name: any;
+    users: Array<any> = []; // List of Users
+    lastName: string;
+    name: string;
 
     constructor(private apollo: Apollo,
                 private modalService: BsModalService) { }
@@ -91,6 +91,37 @@ export class AppComponent {
             }, (error) => {
                 console.log('there was an error sending the query', error);
             });
+    }
+
+    // Update user
+    updateUser({id, name, lastName}: { id: string, name: string, lastName: string }) {
+        this.apollo
+            .mutate({
+                mutation: Query.updateUser,
+                variables: {
+                    id: id,
+                    name: name,
+                    lastName: lastName
+                },
+                update: (proxy, {data: user}) => {
+                    // Read the data from our cache for this query.
+                    let data: any = proxy.readQuery({query: Query.Users});
+
+                    const index = data.users.map(user => user.id).indexOf(this.user.id);
+
+                    data.users[index].name = name;
+                    data.users[index].lastName = lastName;
+
+                    // Write our data back to the cache.
+                    proxy.writeQuery({query: Query.Users, data});
+                }
+            })
+            .subscribe(({data}) => {
+                console.log(data);
+                this.closeModal();
+            }, (error) => {
+                console.log('there was an error sending the query', error);
+            })
     }
 
     // Show form with user info

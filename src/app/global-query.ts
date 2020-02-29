@@ -30,3 +30,14 @@ export const removeUser = gql`
       id
     }
   }`;
+
+
+export const updateUser = gql`
+  mutation updateUser($id: String!, $name: String!, $lastName: String!) {
+    updateUser(id: $id, name: $name, lastName: $lastName) {
+      id
+      name
+      lastName
+    }
+  }`;
+
