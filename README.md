@@ -28,7 +28,7 @@ ng -v
 ```
 
 ## There is a **GitHub** repo with a project that you can use as a server with Nodejs, you should have **MongoDB** installed.
-[FreivinCampbellServer](https://github.com/Freivincampbell/work-shop-server)
+[FreivinCampbellServer](https://github.com/Freivincampbell/workshop-angular9-server)
 
 ## If not, there is a link with an app running on Heroku.com
 [ServerEndPoint](http://workshopserverdotcreek.herokuapp.com/graphql)
@@ -44,7 +44,7 @@ npm install
 
 ## Be sure to run it inside of server project
 ```bash
-cd work-shop-server
+cd workshop-angular9-server
 ```
 
 ```bash
@@ -56,7 +56,7 @@ npm start
 
 ## Be sure to run it inside of client project
 ```bash
-cd work-shop-client
+cd workshop-angular9
 ```
 
 ```bash
